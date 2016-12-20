@@ -4,9 +4,9 @@ class ContactsController < ApplicationController
   end
   
   def create
-    @contact = Contact.new(contact_params)
+    @contact = Contact.new(contact_params) #params[:contact] doesn't work
     if @contact.save
-      name = params[:contact][:name]
+      name = params[:contact][:name]   #but here contact_params[:name] also works
       email = params[:contact][:email]
       body = params[:contact][:comments]
       ContactMailer.contact_email(name,email,body).deliver
